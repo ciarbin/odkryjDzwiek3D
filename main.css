@@ -1,0 +1,150 @@
+* {
+    box-sizing: border-box;
+    font-family: 'Montserrat', sans-serif;
+    color: #1e2138;
+}
+
+.font-sherrif {
+    font-family: 'Abril Fatface', cursive;
+}
+
+.txt-light {
+    color: #ada9ac;
+}
+
+.txt-dark {
+    color: #1e2138;
+}
+
+p {
+    font-size: 16px;
+}
+
+ul {
+    list-style: none;
+}
+
+.logo-text {
+    font-size: 23px;
+    font-family: 'Righteous', cursive;
+}
+
+.nav-link {
+    font-size: 16px;
+    color: #ada9ac !important;
+}
+
+.nav-link.disabled {
+    color: #f1f1fd !important;
+}
+
+.bg-main {
+    background-color: #1e2138;
+}
+
+.bg-second {
+    background-color: #2a2d42;
+}
+
+.background-image {
+    background: linear-gradient( rgba(0, 0, 0, 0) 80%, rgba(42, 45, 66, 1)), url("./images/sea-3652697_1920.jpg");
+    background-position: center;
+    background-repeat: no-repeat;
+    background-size: cover;
+}
+
+section.header {
+    width: 100%;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    padding: 20px;
+}
+
+section .content h1{
+    text-align: center;
+    font-size: 4rem;
+}
+
+.canvas-container {
+    position: relative;
+    display: flex;
+}
+
+.start.btn {
+    background-color: rgba(250, 250, 250, 0.5);
+    width: 100%;
+    height: 330px;
+    z-index: 2;
+    transition: 0.3s;
+}
+.start.btn.hidden {
+    opacity: 0;
+}
+
+.canvas-holder {
+    z-index: 1;
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+.canvas-bg-container {
+    position: absolute;
+    width: 100%;
+    height: 100%;
+    padding-left: 18px;
+    padding-right: 18px;
+    padding-top: 3px;
+    padding-bottom: 3px;
+    z-index: 0;
+}
+
+.canvas-bg-container div {
+    width: 100%;
+    height: 100%;
+    background-color: rgba(42, 45, 66, 0.5);
+    z-index: 0;
+}
+
+.sticky-footer {
+    position: absolute;
+    bottom: 0px;
+    width: 100%;
+}
+
+.txt-footer {
+    font-size: 12px;
+}
+
+.logo-ministerstwa {
+    height: 50px;
+    width: auto;
+}
+
+h3 {
+    font-size: 1.4rem;
+}
+
+@media (min-width: 768px) { 
+    .txt-md-light {
+        color: #ada9ac;
+    }
+    
+    .txt-md-dark {
+        color: #1e2138;
+    }
+
+    p {
+        font-size: 20px;
+    }
+
+    h3 {
+        font-size: 1.75rem;
+    }
+ }

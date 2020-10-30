@@ -1,0 +1,113 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, shrink-to-fit=no">
+  <link rel="icon" href="/favicon.ico"/>
+  <link href="https://fonts.googleapis.com/css2?family=Kaushan+Script&display=swap" rel="stylesheet">
+  <link href="https://fonts.googleapis.com/css2?family=Abril+Fatface&family=Montserrat&display=swap" rel="stylesheet">
+  <link href="https://fonts.googleapis.com/css2?family=Montserrat&display=swap" rel="stylesheet">
+  <link href="https://fonts.googleapis.com/css2?family=Righteous&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="/libraries/bootstrap.min.css">
+  <link rel="stylesheet" href="/main.css">
+  <title>Odkryj dźwięk 3D</title>
+</head>
+<body class="bg-second">
+
+  <nav class="navbar sticky-top navbar-expand-md bg-main navbar-dark py-0">
+
+    <a class="navbar-brand align-items-center" href="/">
+      <span class="d-md-inline-block logo-text align-middle txt-light d-none">Odkryj dźwięk</span>
+      <img src="/images/logo-light.png" alt="Logo" class="d-inline-block mr-2 mt-0 " width="50" height="50">
+    </a>
+
+    <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarTogglerDemo01" aria-controls="navbarTogglerDemo01" aria-expanded="false" aria-label="Toggle navigation">
+      <span class="navbar-toggler-icon"></span>
+    </button>
+
+    <div class="collapse navbar-collapse" id="navbarTogglerDemo01">
+      <ul class="navbar-nav ml-auto mt-2 mt-md-0">
+        <li class="nav-item active">
+          <a class="nav-link disabled" href="/">Odkryj<span class="sr-only">(current)</span></a>
+        </li>
+        <li class="nav-item">
+          <a class="nav-link" href="/learn">Poznaj</a>
+        </li>
+        <li class="nav-item">
+          <a class="nav-link" href="/sandbox">Wypróbuj</a>
+        </li>
+        <li class="nav-item">
+          <a class="nav-link" href="/create">Stwórz</a>
+        </li>
+        <li class="nav-item">
+          <a class="nav-link" href="/about">O nas</a>
+        </li>
+      </ul>
+    </div>
+
+  </nav>
+
+  <div class="background-image">
+
+    <section class="header">
+      <div class="content mt-4">
+        <h1 class="font-sherrif">Odkryj dźwięk 3D</h1>
+      </div>
+    </section>
+  
+    <div class="container mt-2">
+      <div class="row">
+        <div class="col-md-12 text-center p-3 mb-0" style="height: fit-content;">
+          <p class="m-3">Poznaj nową, a raczej na nowo odkrytą technologię dźwięku binauralnego, 
+            <br>która pozwala na słuchanie muzyki w naturalny sposób. </h1>
+            <br><b>Jedyne czego potrzebujesz to słuchawki!</b><br>Załóż i posłuchaj:
+          </p>              
+        </div>
+      </div>
+      <div class="row mb-5">
+        <div class="col-0 col-lg-2"></div>
+        <div id="canvas0" class="col-md-6 col-lg-4 canvas-container my-1">
+          <button class="start btn"><img src="/images/play-button-2d-dark.png" alt="start button" width="120" height="120"></button>
+          <div class="canvas-holder canvas-2d" name="test1">
+            <img src="/images/glowa-2d-dark.png" alt="Głowa w 2d" style="z-index:1; width:200px; height:auto"><div class="canvas-bg-container"><div></div></div>
+          </div>
+        </div>
+        <div id="canvas1" class="col-md-6 col-lg-4 canvas-container my-1">
+          <button class="start btn"><img src="/images/play-button-3d-dark.png" alt="start button" width="120" height="120"></button>
+          <div class="canvas-holder canvas-3d" name="test1"><div class="canvas-bg-container"><div></div></div></div>
+        </div>
+      </div>
+    </div>
+
+    <section class="ending">
+      <div class="container mb-2">
+        <div class="row">
+          <p class="float-right txt-light col-12 text-right">Dowiedz się więcej i <a href="/learn" class="font-sherrif">Poznaj ></a></p>
+        </div>
+      </div>
+    </section>
+
+  </div>
+
+  
+
+  <footer class="bg-main footer d-flex justify-content-between align-items-center px-3">
+    <div class="footer-copyright text-center txt-light txt-footer">© 2020 Copyright:
+      <a href="https://www.youtube.com/watch?v=dQw4w9WgXcQ"> The MOlko's</a>
+    </div>
+
+    <div class="text-right txt-footer d-flex flex-row align-items-center">
+      <span class="txt-light d-none d-md-inline-block">Zrealizowano w ramach programu stypendialnego 
+      Ministra Kultury i Dziedzictwa Narodowego – Kultura w sieci.</span>
+      <img src="/images/mkidn_greyscale.jpg" class="logo-ministerstwa m-1" alt="Logo Ministerstwa Kultury i Dziedzictwa Narodowego">
+    </div>
+  </footer>
+
+  <script src="/libraries/jquery-3.5.1.slim.min.js"></script>
+  <script src="/libraries/popper.min.js"></script>
+  <script src="/libraries/bootstrap.min.js"></script>
+  <script src="/libraries/three.min.js"></script>
+  <script src="/libraries/GLTFLoader.js"></script>
+  <script src="/app.js"></script>
+</body>
+</html>
