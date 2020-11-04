@@ -15,10 +15,10 @@ let head;
 let soundObjects = [];
 let selectedElement = null;
 let colors = {
-    "woda1": {"normal": 0x000066, "selected": 0x0000ff},
-    "woda2": {"normal": 0x006600, "selected": 0x00ff00},
-    "ptak": {"normal": 0x660000, "selected": 0xff0000},
-    "zrodlo": {"normal": 0x666600, "selected": 0xffff00},
+    "woda1": {"normal": 0x16576c, "selected": 0x67C3E0},
+    "woda2": {"normal": 0x721e35, "selected": 0xE089A1},
+    "ptak": {"normal": 0x6a6414, "selected": 0xE0D75C},
+    "zrodlo": {"normal": 0x351b70, "selected": 0x9C7EE0},
 };
 
 //variables for Web Audio API
@@ -45,9 +45,9 @@ let backgrounds = new Object();
 let recentlySelected = document.querySelector(".input-radio:checked");
 
 //materials and constants for spheres and interaction
-let transparentMaterial = new THREE.MeshPhysicalMaterial( { color: 0x1e2138, 
+let transparentMaterial = new THREE.MeshPhysicalMaterial( { color: 0xa3a5b7, 
     transparent: true, 
-    transmission: 0.35,
+    transmission: 0.6,
     side: THREE.DoubleSide} );
 
 let normalMaterial = new THREE.MeshPhysicalMaterial( { color: 0x606060,

@@ -13,8 +13,8 @@ let audioCtx;
 let audioListener;
 let audioLoadingPromise;
 let sounds = {
-    "dragon" : "/sounds/water.wav",
-    "test" : "/sounds/water.wav",
+    "dragon" : "/sounds/water.mp3",
+    "test" : "/sounds/water.mp3",
 };
 
 //variables for animating elements
@@ -149,7 +149,7 @@ class soundObject {
             this.object = await modelLoader(models[this.objectName]);
         } else {
             this.object = createSphere();
-            this.object.material.color = new THREE.Color("#ff0000");
+            this.object.material.color = new THREE.Color("#9C7EE0");
         }
         this.object.scale.set(SIZE, SIZE, SIZE);
         this.panner = audioCtx.createPanner();
