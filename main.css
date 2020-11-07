@@ -4,6 +4,10 @@
     color: #1e2138;
 }
 
+html {
+    font-size: 14px;
+}
+
 .font-sherrif {
     font-family: 'Abril Fatface', cursive;
 }
@@ -17,7 +21,7 @@
 }
 
 p {
-    font-size: 16px;
+    font-size: 1.2rem;
 }
 
 ul {
@@ -25,7 +29,7 @@ ul {
 }
 
 .continue-link {
-    font-size: 1.4rem;
+    font-size: 1.3rem;
 }
 
 .logo-text {
@@ -65,14 +69,10 @@ section.header {
     padding: 20px;
 }
 
-section .content h1{
-    text-align: center;
-    font-size: 4rem;
-}
-
 .canvas-container {
     position: relative;
     display: flex;
+    z-index: 2;
 }
 
 .start.btn {
@@ -87,7 +87,6 @@ section .content h1{
 }
 
 .canvas-holder {
-    z-index: 1;
     position: absolute;
     top: 0;
     left: 0;
@@ -131,12 +130,21 @@ section .content h1{
     width: auto;
 }
 
+h1{
+    text-align: center;
+    font-size: 4rem;
+}
+
 h2 {
     font-size: 1.6rem;
 }
 
 h3 {
     font-size: 1.4rem;
+}
+
+h4 {
+    font-size: 1.2rem;
 }
 
 a {
@@ -148,6 +156,14 @@ a:hover {
     color: #c7af6b  ;
 }
 
+.gradient {
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%,-50%);
+    z-index: 1;
+}
+
 @media (min-width: 768px) { 
     .txt-md-light {
         color: #ada9ac;
@@ -157,8 +173,12 @@ a:hover {
         color: #1e2138;
     }
 
+    html {
+        font-size: 16px;
+    }
+/*
     p {
-        font-size: 18px;
+        font-size: 1.2rem;
     }
 
     h2 {
@@ -168,4 +188,8 @@ a:hover {
     h3 {
         font-size: 1.75rem;
     }
+
+    h4 {
+        font-size: 1.3rem;
+    }*/
  }

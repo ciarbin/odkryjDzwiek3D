@@ -90,6 +90,12 @@ let newElementMenuHolder = document.querySelector(".new-element-menu");
 let newElementButtonsHolders = document.querySelectorAll(".new-element");
 let backgroundToggleHolder = document.querySelector(".background-toggle");
 
+//variables for press and hold
+let currentlyPressed = "";
+let timer;
+let pressingId;
+let pressStart;
+
 class soundObject {
     constructor(objectName) {
         this.objectName = objectName;
@@ -177,6 +183,7 @@ async function initScene() {
     scene = new THREE.Scene();
 
     const CANVAS_SIZE = Math.min(sceneContainer.clientWidth, sceneContainer.clientHeight);
+    document.querySelector(".gradient").style.width = (CANVAS_SIZE*0.8).toString() + "px";
 
     //camera settings
     const fov = 40;
@@ -262,6 +269,7 @@ function onWindowResize() {
     const SIZE = Math.min(sceneContainer.clientHeight, sceneContainer.clientWidth);
     renderer.setSize(SIZE, SIZE);
     renderer.render(scene, camera);
+    document.querySelector(".gradient").style.width = (SIZE*0.8).toString() + "px";
 }
 
 async function addNewElement(event) {
@@ -304,6 +312,8 @@ function changeSelectedElement(newSelectedElement) {
 async function toggleBackground() {
     if(backgroundToggleHolder.classList.contains("active")) {
         background.source.stop();
+        document.querySelector(".background-crossed").style.display = "inline-block";
+        document.querySelector(".gradient").classList.add("d-none");
     } else {
         await audioLoadingPromise;
         background.source = audioCtx.createBufferSource();
@@ -311,37 +321,39 @@ async function toggleBackground() {
         background.source.loop = true;
         background.source.connect(background.gainNode);
         background.source.start();
+        document.querySelector(".background-crossed").style.display = "none";
+        document.querySelector(".gradient").classList.remove("d-none");
     }
 }
 
-function up() {
+function up(e, step = 5) {
     if (selectedElement != null) {
         if (selectedElement.height < 90) {
-            selectedElement.height += 5;
+            selectedElement.height += step;
         }
         selectedElement.update()
     }
 }
 
-function down() {
+function down(e, step = 5) {
     if (selectedElement != null) {
         if (selectedElement.height > -90) {
-            selectedElement.height -= 5;
+            selectedElement.height -= step;
         }
         selectedElement.update();
     }
 }
 
-function left() {
+function left(e, step = 5) {
     if (selectedElement != null) {
-        selectedElement.azymut += 5;
+        selectedElement.azymut += step;
         selectedElement.update();
     }
 }
 
-function right() {
+function right(e, step = 5) {
     if (selectedElement != null) {
-        selectedElement.azymut -= 5;
+        selectedElement.azymut -= step;
         selectedElement.update();
     }
 }
@@ -400,7 +412,24 @@ function handleVisibilityChange() {
     } else  {
       audioCtx.resume();
     }
-  }
+}
+
+function handleKeyboardClick(event) {
+    switch(event.key) {
+        case "ArrowLeft":
+            left();
+            break;
+        case "ArrowUp":
+            up();
+            break;
+        case "ArrowDown":
+            down();
+            break;
+        case "ArrowRight":
+            right();
+            break;
+    }
+}
   
 document.addEventListener("visibilitychange", handleVisibilityChange, false);
 
@@ -413,9 +442,64 @@ sceneContainer.addEventListener("click", onScreenClick);
 buttonAddHolder.addEventListener("click", showNewElementMenu);
 buttonDelHolder.addEventListener("click", deleteSelectedElement);
 backgroundToggleHolder.addEventListener("click", toggleBackground);
+document.addEventListener("keydown", handleKeyboardClick);
 
 for(let i = 0; i < newElementButtonsHolders.length; i++) {
     newElementButtonsHolders[i].addEventListener("click", addNewElement);
+}
+
+function addHolders(buttonHolder) {
+    buttonHolder.addEventListener("mousedown", pressingDown, false);
+    buttonHolder.addEventListener("mouseup", notPressingDown, false);
+    buttonHolder.addEventListener("mouseleave", notPressingDown, false);
+
+    buttonHolder.addEventListener("touchstart", pressingDown, false);
+    buttonHolder.addEventListener("touchend", notPressingDown, false);
+}
+
+[buttonUpHolder, buttonDownHolder, buttonLeftHolder, buttonRightHolder].forEach(addHolders)
+
+
+function pressingDown(e) {
+    e.preventDefault();
+    pressingID = requestAnimationFrame(press);
+    if(e.currentTarget.classList.contains("up")) {
+        currentlyPressed = "Up";
+    } else if(e.currentTarget.classList.contains("down")) {
+        currentlyPressed = "Down";
+    } else if(e.currentTarget.classList.contains("left")) {
+        currentlyPressed = "Left";
+    } else if(e.currentTarget.classList.contains("right")) {
+        currentlyPressed = "Right";
+    }
+}
+
+function notPressingDown() {
+    cancelAnimationFrame(pressingID);
+    pressStart = null;
+    currentlyPressed = null;
+}
+
+function press(timestamp){
+    if(pressStart == null) {
+        pressStart = timestamp;
+    } else if (pressStart + 200 < timestamp) {
+        switch(currentlyPressed) {
+            case "Up":
+                up(null, 1.5)
+                break;
+            case "Down":
+                down(null, 1.5)
+                break;
+            case "Left":
+                left(null, 1.5)
+                break;
+            case "Right":
+                right(null, 1.5)
+                break;
+        }
+    }
+    pressingID = requestAnimationFrame(press);
 }
 
 /*
@@ -434,16 +518,6 @@ function pauseApp() {
     audioCtx.suspend();
     buttonPauseHolder.classList.add("hidden");
     buttonStartHolder.classList.remove("hidden");
-}
-
-function toggleBackground() {
-    if (radioNoneHolder.checked) {
-        recentlySelected.checked = true;
-        backgrounds[recentlySelected.value].play();
-    } else {
-        radioNoneHolder.checked = true;
-        backgrounds[recentlySelected.value].pause();
-    }
 }
 
 function changeBackground(e) {

@@ -10,6 +10,7 @@ html {
 
 body {
     height:100%;
+    overflow: hidden;
 }
 
 .background-image-g {
@@ -33,12 +34,21 @@ body {
     display: flex;
     justify-content: center;
     align-items: center;
+    z-index: 2;
 }
 
 #canvas {
     width: 100%;
     height: 100%;
     overflow: hidden;
+}
+
+canvas {
+    z-index: 2;
+}
+
+.gradient {
+    width: 50%;
 }
 
 .buttons-layer {
@@ -97,6 +107,10 @@ body {
     padding: 0px;
 }
 
+.appbtn:disabled {
+    opacity: 0.3;
+}
+
 .appbtn {
     height: 75px;
     width: 75px;
@@ -104,6 +118,7 @@ body {
     font-size: 18px;
     padding: 0;
     border: 0px;
+    transition: 0.25s;
 }
 
 .appbtn:hover {
@@ -143,6 +158,18 @@ body {
     display: none;
 }
 
+.fa-stack {
+    height: 100% !important;
+    top: 0px;
+    display: flex !important;
+    align-items: center;
+}
+
+.fa-ban {
+    font-size: 70px;
+    color: #606060;
+}
+
 .fa-faucet {
     color: #67C3E0;
 }
@@ -177,5 +204,9 @@ body {
 
     .appbtn.symbol {
         font-size: 60px;
+    }
+
+    .fa-ban {
+        font-size: 90px;
     }
  }
