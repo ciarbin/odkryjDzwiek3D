@@ -360,6 +360,7 @@ function endAnimator() {
 
 function animationToggle() {
     let theSame = animatedScene == scenes[this.parentNode.id];
+    audioCtx.resume();
     if (animatedScene && animatedScene.is2d) {
         animatedScene.source.stop();
         animatedScene = null;

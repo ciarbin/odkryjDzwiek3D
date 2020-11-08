@@ -430,14 +430,16 @@ function handleKeyboardClick(event) {
             break;
     }
 }
+
+function checkAudioCtx() {
+    audioCtx.resume();
+}
+
+window.addEventListener("click", checkAudioCtx);
   
 document.addEventListener("visibilitychange", handleVisibilityChange, false);
 
 window.addEventListener("resize", onWindowResize);
-buttonUpHolder.addEventListener("mousedown", up);
-buttonDownHolder.addEventListener("click", down);
-buttonLeftHolder.addEventListener("click", left);
-buttonRightHolder.addEventListener("click", right);
 sceneContainer.addEventListener("click", onScreenClick);
 buttonAddHolder.addEventListener("click", showNewElementMenu);
 buttonDelHolder.addEventListener("click", deleteSelectedElement);
@@ -465,12 +467,16 @@ function pressingDown(e) {
     pressingID = requestAnimationFrame(press);
     if(e.currentTarget.classList.contains("up")) {
         currentlyPressed = "Up";
+        up(null, 5);
     } else if(e.currentTarget.classList.contains("down")) {
         currentlyPressed = "Down";
+        down(null, 5);
     } else if(e.currentTarget.classList.contains("left")) {
         currentlyPressed = "Left";
+        left(null, 5);
     } else if(e.currentTarget.classList.contains("right")) {
         currentlyPressed = "Right";
+        right(null, 5);
     }
 }
 

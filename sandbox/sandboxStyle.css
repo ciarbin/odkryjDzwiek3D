@@ -49,6 +49,7 @@ canvas {
 
 .gradient {
     width: 50%;
+    opacity: 0.5;
 }
 
 .buttons-layer {

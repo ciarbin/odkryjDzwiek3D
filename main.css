@@ -61,6 +61,13 @@ ul {
     background-size: cover;
 }
 
+.background-image-header {
+    background: linear-gradient( rgba(0, 0, 0, 0) 80%, rgba(42, 45, 66, 1)), url("./images/sea-3652697_1920.jpg");
+    background-position: center;
+    background-repeat: no-repeat;
+    background-size: 150%;
+}
+
 section.header {
     width: 100%;
     display: flex;
@@ -175,6 +182,10 @@ a:hover {
 
     html {
         font-size: 16px;
+    }
+
+    .background-image-header {
+        background-size: cover;
     }
 /*
     p {
