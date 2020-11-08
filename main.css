@@ -93,6 +93,10 @@ section.header {
     opacity: 0;
 }
 
+.start-triangle {
+    transform: translate(17%);
+}
+
 .canvas-holder {
     position: absolute;
     top: 0;

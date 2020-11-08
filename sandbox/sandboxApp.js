@@ -312,7 +312,6 @@ function changeSelectedElement(newSelectedElement) {
 async function toggleBackground() {
     if(backgroundToggleHolder.classList.contains("active")) {
         background.source.stop();
-        document.querySelector(".background-crossed").style.display = "inline-block";
         document.querySelector(".gradient").classList.add("d-none");
     } else {
         await audioLoadingPromise;
@@ -321,7 +320,6 @@ async function toggleBackground() {
         background.source.loop = true;
         background.source.connect(background.gainNode);
         background.source.start();
-        document.querySelector(".background-crossed").style.display = "none";
         document.querySelector(".gradient").classList.remove("d-none");
     }
 }
