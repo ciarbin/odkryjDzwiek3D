@@ -1,5 +1,5 @@
 <!DOCTYPE html>
-<html lang="en">
+<html lang="en" class="h-100">
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0, shrink-to-fit=no">
@@ -13,7 +13,7 @@
   <link rel="stylesheet" href="/main.css">
   <title>Odkryj dźwięk 3D</title>
 </head>
-<body class="bg-second">
+<body class="bg-second d-flex flex-column h-100">
 
   <nav class="navbar sticky-top navbar-expand-md bg-main navbar-dark py-0">
 
@@ -35,7 +35,7 @@
           <a class="nav-link" href="/learn">Poznaj</a>
         </li>
         <li class="nav-item">
-          <a class="nav-link" href="/sandbox">Wypróbuj</a>
+          <a id="sandboxlink" class="nav-link" href="/sandbox">Wypróbuj</a>
         </li>
         <li class="nav-item">
           <a class="nav-link" href="/create">Stwórz</a>
@@ -48,7 +48,7 @@
 
   </nav>
 
-  <div class="background-image">
+  <div class="background-image flex-shrink-0">
 
     <section class="header">
       <div class="content mt-4 mb-0 mt-md-5">
@@ -93,9 +93,7 @@
 
   </div>
 
-  
-
-  <footer class="bg-main footer d-flex justify-content-between align-items-center px-3">
+  <footer class="bg-main footer d-flex justify-content-between align-items-center px-3 mt-auto">
     <div class="footer-copyright text-center txt-light txt-footer">© 2020 Copyright:
       <a href="/about"> The MOlko's</a>
     </div>

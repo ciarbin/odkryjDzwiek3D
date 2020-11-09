@@ -149,7 +149,7 @@ class soundObject {
             this.object = await modelLoader(models[this.objectName]);
         } else {
             this.object = createSphere();
-            this.object.material.color = new THREE.Color("#9C7EE0");
+            this.object.material.color = new THREE.Color("#c7af6b");
         }
         this.object.scale.set(SIZE, SIZE, SIZE);
         this.panner = audioCtx.createPanner();
