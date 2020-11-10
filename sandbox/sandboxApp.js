@@ -105,7 +105,7 @@ class soundObject {
         this.source;
     }
 
-    init() {
+    async init() {
         this.object = createSphere();
         let materialNormal = cartoonMaterial.clone();
         materialNormal.color = new THREE.Color(colors[this.objectName].normal);
@@ -113,6 +113,7 @@ class soundObject {
         materialSelected.color = new THREE.Color(colors[this.objectName].selected);
         this.materials = {"normal" : materialNormal, "selected" : materialSelected};
         this.object.scale.set(SIZE, SIZE, SIZE);
+        await audioLoadingPromise;
         this.panner = audioCtx.createPanner();
         this.panner.panningModel = 'HRTF';
         this.panner.setPosition(0,0,-DIST);
@@ -125,7 +126,8 @@ class soundObject {
         renderer.render(scene,camera);
     }
 
-    update() {
+    async update() {
+        await audioLoadingPromise;
         let position = positionFromAngles(this.azymut, this.height);
         this.object.position.set(position[0],position[1],position[2]);
         this.object.lookAt(0,0,0);
@@ -144,7 +146,8 @@ class soundObject {
         this.source.start();
     }
 
-    changeVolume(value) {
+    async changeVolume(value) {
+        await audioLoadingPromise;
         this.gainNode.gain.setValueAtTime(value, audioCtx.currentTime);
     }
 };
@@ -164,19 +167,19 @@ async function loadAudioApi() {
     audioCtx = new (window.AudioContext || window.webkitAudioContext)();
     audioListener = audioCtx.listener;
     audioListener.setOrientation(0,0,-1,0,1,0);
-    let promises = [];
 
     for ([name, path] of Object.entries(sounds)) {
-        let nameVar = name;
-        promises.push(window.fetch(path)
+        sounds[name] = window.fetch(path)
         .then(response => response.arrayBuffer())
         .then(arrayBuffer => audioCtx.decodeAudioData(arrayBuffer))
-        .then(audioBuffer => sounds[nameVar] = audioBuffer));
+        .then(audioBuffer => audioBuffer);
     }
     background.gainNode = audioCtx.createGain();
     background.gainNode.gain.setValueAtTime(0.1, audioCtx.currentTime);
     background.gainNode.connect(audioCtx.destination);
-    await Promise.all(promises);
+    for ([name, soundPromise] of Object.entries(sounds)) {
+        sounds[name] =  await soundPromise;
+    }
 }
 
 async function initScene() {

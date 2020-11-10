@@ -98,6 +98,7 @@ class sceneObject {
                 this.soundObjects[id].azymut = values[1];
                 this.soundObjects[id].height = values[2];
                 this.soundObjects[id].camera = this.camera;
+                await audioLoadingPromise;
                 await this.soundObjects[id].init();
                 this.scene.add(this.soundObjects[id].object);
                 this.soundObjects[id].update();
@@ -152,6 +153,7 @@ class soundObject {
             this.object.material.color = new THREE.Color("#c7af6b");
         }
         this.object.scale.set(SIZE, SIZE, SIZE);
+        await audioLoadingPromise;
         this.panner = audioCtx.createPanner();
         this.panner.panningModel = 'HRTF';
         this.panner.setPosition(0,0,-DIST);
@@ -162,6 +164,7 @@ class soundObject {
     }
 
     update() {
+        await audioLoadingPromise;
         let position = positionFromAngles(this.azymut, this.height);
         this.object.position.set(position[0],position[1],position[2]);
         this.object.lookAt(0,0,0);
@@ -249,19 +252,20 @@ async function loadAudioApi() {
     audioCtx = new (window.AudioContext || window.webkitAudioContext)();
     audioListener = audioCtx.listener;
     audioListener.setOrientation(0,0,-1,0,1,0);
-    let promises = [];
 
     for ([name, path] of Object.entries(sounds)) {
-        let nameVar = name;
-        promises.push(window.fetch(path)
+        sounds[name] = window.fetch(path)
         .then(response => response.arrayBuffer())
         .then(arrayBuffer => audioCtx.decodeAudioData(arrayBuffer))
-        .then(audioBuffer => sounds[nameVar] = audioBuffer));
+        .then(audioBuffer => audioBuffer);
     }
-    await Promise.all(promises);
+    for ([name, soundPromise] of Object.entries(sounds)) {
+        sounds[name] =  await soundPromise;
+    }
 }
 
 function init() {
+    audioLoadingPromise = loadAudioApi();
     let containers = document.querySelectorAll(".canvas-3d");
     for (let i = 0; i < containers.length; i++) {
         let newObject = new sceneObject(containers[i]);
@@ -270,7 +274,6 @@ function init() {
     }
     let container = document.querySelector(".canvas-2d");
     if (container) scenes[container.parentNode.id] = new scene2dObject();
-    audioLoadingPromise = loadAudioApi();
 }
 
 init();
