@@ -89,9 +89,13 @@ class sceneObject {
         this.camera;
     }
 
-    async init() {
+    async initModels() {
         [this.renderer, this.scene, this.camera] = await initScene(this.container);
         this.renderer.render(this.scene, this.camera);
+        
+    }
+
+    async initAudio() {
         {   let tmp = animations[this.container.attributes.name.value];
             for (const [id, values] of Object.entries(tmp.contains)) {
                 this.soundObjects[id] = new soundObject(values[0]);
@@ -163,8 +167,7 @@ class soundObject {
         this.panner.connect(audioCtx.destination);
     }
 
-    async update() {
-        await audioLoadingPromise;
+    update() {
         let position = positionFromAngles(this.azymut, this.height);
         this.object.position.set(position[0],position[1],position[2]);
         this.object.lookAt(0,0,0);
@@ -252,24 +255,27 @@ async function loadAudioApi() {
     audioCtx = new (window.AudioContext || window.webkitAudioContext)();
     audioListener = audioCtx.listener;
     audioListener.setOrientation(0,0,-1,0,1,0);
-
     for ([name, path] of Object.entries(sounds)) {
         sounds[name] = window.fetch(path)
         .then(response => response.arrayBuffer())
         .then(arrayBuffer => audioCtx.decodeAudioData(arrayBuffer))
-        .then(audioBuffer => audioBuffer);
+        .then((audioBuffer) => {return audioBuffer});
     }
     for ([name, soundPromise] of Object.entries(sounds)) {
         sounds[name] =  await soundPromise;
     }
+
+    let containers = document.querySelectorAll(".canvas-3d");
+    for (let i = 0; i < containers.length; i++) {
+        scenes[containers[i].parentNode.id].initAudio();
+    }
 }
 
 function init() {
-    audioLoadingPromise = loadAudioApi();
     let containers = document.querySelectorAll(".canvas-3d");
     for (let i = 0; i < containers.length; i++) {
         let newObject = new sceneObject(containers[i]);
-        newObject.init();
+        newObject.initModels();
         scenes[containers[i].parentNode.id] = newObject;
     }
     let container = document.querySelector(".canvas-2d");
@@ -343,7 +349,7 @@ function animator(timestamp) {
     }
 }
 
-function endAnimator() {
+async function endAnimator() {
     let anim = animatedScene.animation;
     cancelAnimationFrame(animationId);
     for ([id, movements] of Object.entries(anim.description)) {
@@ -361,9 +367,12 @@ function endAnimator() {
     animatedScene = null;
 }
 
-function animationToggle() {
+async function animationToggle() {
+    if (!audioLoadingPromise) {
+        audioLoadingPromise = loadAudioApi();
+    }else {
+    await audioLoadingPromise;
     let theSame = animatedScene == scenes[this.parentNode.id];
-    audioCtx.resume();
     if (animatedScene && animatedScene.is2d) {
         animatedScene.source.stop();
         animatedScene = null;
@@ -381,6 +390,7 @@ function animationToggle() {
         animationButtonHolder = this;
         requestAnimationFrame(startAnimator);
     }
+    }   
 }
 
 for (let buttonHolder of document.querySelectorAll(".start")) {
