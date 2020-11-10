@@ -163,7 +163,7 @@ class soundObject {
         this.panner.connect(audioCtx.destination);
     }
 
-    update() {
+    async update() {
         await audioLoadingPromise;
         let position = positionFromAngles(this.azymut, this.height);
         this.object.position.set(position[0],position[1],position[2]);
