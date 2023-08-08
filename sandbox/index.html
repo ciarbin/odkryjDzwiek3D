@@ -12,15 +12,15 @@
   <link rel="stylesheet" href="/libraries/bootstrap.min.css">
   <link rel="stylesheet" href="/main.css">
   <link rel="stylesheet" href="./sandboxStyle.css">
-  <title>Odkryj dźwięk 3D - Sandbox</title>
+  <title>Discover 3D sound - Sandbox</title>
 </head>
 <body class="bg-second">
 
   <nav class="navbar fixed-top navbar-expand-md bg-main navbar-dark py-0">
 
     <a class="navbar-brand align-items-center" href="/">
-      <span class="logo-text align-middle txt-light">Odkryj dźwięk</span>
-      <img src="/images/logo-light.png" alt="Logo" class="d-inline-block mr-2 mt-0 " width="50" height="50">
+      <span class="logo-text align-middle txt-light">Discover <img src="/images/logo-light.png" alt="Logo" class="d-inline-block mt-0 " width="50" height="50"> sound</span>
+      
     </a>
 
     <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarTogglerDemo01" aria-controls="navbarTogglerDemo01" aria-expanded="false" aria-label="Toggle navigation">
@@ -30,19 +30,19 @@
     <div class="collapse navbar-collapse" id="navbarTogglerDemo01">
       <ul class="navbar-nav ml-auto mt-2 mt-md-0">
         <li class="nav-item active">
-          <a class="nav-link" href="/">Odkryj</a>
+          <a class="nav-link" href="/">Discover</a>
         </li>
         <li class="nav-item">
-          <a class="nav-link" href="/learn">Poznaj</a>
+          <a class="nav-link" href="/learn">Learn</a>
         </li>
         <li class="nav-item">
-          <a class="nav-link disabled" href="/sandbox">Wypróbuj<span class="sr-only">(current)</span></a>
+          <a class="nav-link disabled" href="/sandbox">Explore<span class="sr-only">(current)</span></a>
         </li>
         <li class="nav-item">
-          <a class="nav-link" href="/create">Stwórz</a>
+          <a class="nav-link" href="/create">Create</a>
         </li>
         <li class="nav-item">
-          <a class="nav-link" href="/about">O nas</a>
+          <a class="nav-link" href="/about">About</a>
         </li>
       </ul>
     </div>
@@ -53,7 +53,7 @@
     <div class="modal-dialog modal-dialog-scrollable">
       <div class="modal-content">
         <div class="modal-header">
-          <h5 class="modal-title" id="exampleModalLabel">Zanim zaczniesz</h5>
+          <h5 class="modal-title" id="exampleModalLabel">Before you start</h5>
           <button type="button" class="close" data-dismiss="modal" aria-label="Close">
             <span aria-hidden="true">&times;</span>
           </button>
@@ -64,18 +64,18 @@
 
             <div class="row">
               <div class="col-12 py-2 d-flex justify-content-center align-items-center text-center">
-                <b>Załóż słuchawki! - Użyj najlepszych, jakie posiadasz - im lepsze, tym lepsza lokalizacja dźwięku</b>
+                <b>Put on headphones! - Use the best one you have - better headphones, better sound localization</b>
               </div>
 
               <div class="col-8 py-2 d-flex justify-content-center align-items-center mt-3">
-                Dodaj nowy dźwięk:
+                Add a new sound:
               </div>
               <div class="col-4 py-2 d-flex justify-content-center">
-                <button type="button" class="btn appbtn txt-light rounded bg-main">Dodaj</button>
+                <button type="button" class="btn appbtn txt-light rounded bg-main">Add</button>
               </div>
 
               <div class="col-12 py-2 text-center mt-3">
-                Wybierz rodzaj dźwięku, który chcesz dodać:
+                Specify the type of sound you want to add:
               </div>
               <div class="col-12 py-2 d-flex justify-content-center">
                 <div class="btn-group" role="group" aria-label="Basic example">
@@ -87,7 +87,7 @@
               </div>
 
               <div class="col-12 py-2 text-center mt-3">
-                Zmień położenie dźwięku wokół swojej głowy:
+                Select and change the position of sound:
               </div>
               <div class="container d-flex flex-column align-items-center justify-content-center">
                 <div class="row d-flex justify-content-center ">
@@ -101,7 +101,7 @@
               </div>
 
               <div class="col-8 py-2 d-flex text-center align-items-center mt-3">
-                Włącz dźwięki tła (stereo):
+                Play ambient sound (stereo):
               </div>
               <div class="col-4 py-2 d-flex justify-content-center align-items-center mt-3 position-relative">
                 <button type="button" class="btn appbtn symbol txt-light m-1" aria-pressed="false" autocomplete="off" style="background-color: #c1c1c1 !important;">
@@ -113,10 +113,10 @@
               </div>
 
               <div class="col-8 py-2 d-flex justify-content-center align-items-center mt-3">
-                Zaznacz dźwięk, a następnie kliknij ten przycisk, aby usunąć:
+                Select sound and click this button to delete:
               </div>
               <div class="col-4 py-2 d-flex justify-content-center">
-                <button type="button" class="btn appbtn txt-light rounded bg-main">Usuń</button>
+                <button type="button" class="btn appbtn txt-light rounded bg-main">Delete</button>
               </div>
               
             </div>
@@ -124,7 +124,7 @@
 
         </div>
         <div class="modal-footer">
-          <button type="button" class="btn btn-secondary" data-dismiss="modal">Zamknij</button>
+          <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
         </div>
       </div>
     </div>
@@ -145,8 +145,8 @@
 
       <div class="add-element">
         <div class="state">
-          <button type="button" class="btn appbtn txt-light rounded del bg-main" disabled>Usuń</button>
-          <button type="button" class="btn appbtn txt-light rounded add bg-main">Dodaj</button>
+          <button type="button" class="btn appbtn txt-light rounded del bg-main" disabled>Delete</button>
+          <button type="button" class="btn appbtn txt-light rounded add bg-main">Add</button>
         </div>
 
         <div class="new-element-menu hidden">
