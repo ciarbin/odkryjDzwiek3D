@@ -34,7 +34,8 @@ ul {
 
 .logo-text {
     font-size: 23px;
-    font-family: 'Righteous', cursive;
+    font-family: 'Montserrat', cursive;
+    font-weight: bold;
 }
 
 .nav-link {
